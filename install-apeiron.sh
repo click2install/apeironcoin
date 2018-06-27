@@ -334,10 +334,10 @@ function show_output()
  echo -e " - rotate your ${GREEN}$LOG_FILE${NC} file once per week and keep the last 4 weeks of logs."
  echo
  echo -e "You can find the masternode status when logged in as $APEIRONUSER using the command below:"
- echo -e " - ${GREEN}${CLI_BINARY}getinfo${NC} to retreive your nodes status and information"
+ echo -e " - ${GREEN}${CLI_NAME} getinfo${NC} to retreive your nodes status and information"
  echo
  echo -e "  if you are not logged in as $APEIRONUSER then you can run ${YELLOW}su - $APEIRONUSER${NC} to switch to that user before"
- echo -e "  running the ${GREEN}getinfo${NC} command."
+ echo -e "  running the ${GREEN}${CLI_NAME} getinfo${NC} command."
  echo -e "  NOTE: the ${BINARY_NAME} daemon must be running first before trying this command. See notes above on service commands usage."
  echo
  echo -e "================================================================================================================================"
