@@ -24,9 +24,9 @@ APEIRON: AYFt8nujoqZudztmZXDghpP4JFobg8ssko
 ## How to setup your masternode with this script and a cold wallet on your PC
 The script assumes you are running a cold wallet on your local PC and this script will execute on a Ubuntu Linux VPS (server). The steps involved are:
 
- 1. Run the masternode installation script as per the https://github.com/click2install/apeironcoin#installation instructions above.
- 2. When you are finished this process you will get some information on what has been done as well as some important information you will need for your cold wallet setup. **Copy and paste this output for safe keeping.**
- 3. Copy/paste the output of this script into a text file and keep it safe.
+ 1. Run the masternode installation script as per the [instructions above](https://github.com/click2install/apeironcoin#installation).
+ 2. When you are finished this process you will get some information on what has been done as well as some important information you will need for your cold wallet setup.
+ 3. **Copy/paste the output of this script into a text file and keep it safe.**
 
 You are now ready to configure your local wallet and finish the masternode setup
 
@@ -39,7 +39,7 @@ You are now ready to configure your local wallet and finish the masternode setup
  7. Once confirmed, open your wallet console and type: `masternode outputs`
  8. Open your masternode configuration file from the wallets `Tools` menu item.
  9. In your masternodes.conf file add an entry that looks like: `[address-name from #4] [ip:port of your VPS from script output] [privkey from script output] [txid from from #7] [tx output index from #7]` - 
- 10. Your masternodes.conf file entry should look like: `MN-1 127.0.0.2:48882 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0`
+ 10. Your masternodes.conf file entry should look like: `MN-1 127.0.0.2:48882 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0` and it must be all on one line in your masternodes config file
  11. Save and close your masternodes.conf file
  12. Close your wallet and restart
  13. Go to Masternodes > My MasterNodes
@@ -50,15 +50,17 @@ You are now ready to configure your local wallet and finish the masternode setup
  &nbsp;
 
 ## Multiple master nodes on one server
-The script allows for multiple nodes to be setup on the same server, using the same IP address and different ports. It also allows for either IPv4 and/or IPv6 addresses to be used.
+The script allows for multiple nodes to be setup on the same server, using the same IP address and different ports. It also allows for either IPv4 and/or IPv6 addresses to be used. 
 
 During the execution of the script you have the opportunity to decide on a port and rpc port to use for the node. Each node runs under are different user account which the script creates for you.
 
+**Important:** when installing more than one masternode, make sure the port number you choose is above 1024 and at least 2 greater than any other node you have running. It need to be 2 as the masternode uses the port you enter and the masternode rpcserver uses the next highest port.
+
 At this stage the script auto detects the IP addresses of the server, if there is more than one address found, it will ask you which address to use, otherwise it will use the only address found without user input.
 
-If you do setup multiple masternodes on a single VPS, make sure the VPS is capable of running more than one masternode or your masternode rewards will suffer.
+If you do setup multiple masternodes on a single VPS, make sure the VPS is capable of running more than one masternode or your masternode rewards will suffer. **You have been warned.**
 
-Once you have setup the 2nd or more masternodes, use the output of the script for each masternode and follow the steps above in your wallet, where each new masternode is a new line in your `masternode.conf` file.
+Once you have setup the 2nd or more masternodes, use the output of the script for each masternode and follow the [steps above](https://github.com/click2install/apeironcoin#how-to-setup-your-masternode-with-this-script-and-a-cold-wallet-on-your-pc) in your wallet, where each new masternode is a new line in your `masternode.conf` file.
 
 &nbsp;
 
