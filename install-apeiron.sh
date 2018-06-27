@@ -4,7 +4,6 @@ TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE="apeiron.conf"
 DEFAULTUSER="apeiron-mn1"
 DEFAULTPORT=46123
-SSH_PORTNUMBER=22
 BINARY_NAME="apeirond"
 BINARY_FILE="/usr/local/bin/$BINARY_NAME"
 CLI_NAME="apeiron-cli"
@@ -120,9 +119,6 @@ function enable_firewall()
   ufw allow $DAEMONPORT/tcp comment "Apeiron Masternode port" >/dev/null 2>&1
   ufw allow $[DAEMONPORT+1]/tcp comment "Apeiron Masernode RPC port" >/dev/null 2>&1
   
-  ufw allow $SSH_PORTNUMBER/tcp comment "Custom SSH port" >/dev/null 2>&1
-  ufw limit $SSH_PORTNUMBER/tcp >/dev/null 2>&1
-
   ufw logging on >/dev/null 2>&1
   ufw default deny incoming >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
@@ -351,7 +347,6 @@ function show_output()
 function setup_node() 
 {
   ask_user
-  #ask_ssh_port
   check_port
   ask_ip
   create_config
@@ -383,7 +378,7 @@ echo -e " - Obtain the latest Apeiron masternode files from the Apeiron GitHub r
 echo -e " - Create a user and password to run the Apeiron masternode service"
 echo -e " - Install the Apeiron masternode service under the new user [not root]"
 echo -e " - Add DDoS protection using fail2ban"
-echo -e " - Update the system firewall to only allow; SSH, the masternode ports and outgoing connections"
+echo -e " - Update the system firewall to only allow; the masternode ports and outgoing connections"
 echo -e " - Rotate and archive the masternode logs to save disk space"
 echo
 echo -e "The script will output ${YELLOW}questions${NC}, ${GREEN}information${NC} and ${RED}errors${NC}"
