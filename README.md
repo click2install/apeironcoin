@@ -62,6 +62,8 @@ If you do setup multiple masternodes on a single VPS, make sure the VPS is capab
 
 Once you have setup the 2nd or more masternodes, use the output of the script for each masternode and follow the [steps above](https://github.com/click2install/apeironcoin#how-to-setup-your-masternode-with-this-script-and-a-cold-wallet-on-your-pc) in your wallet, where each new masternode is a new line in your `masternode.conf` file.
 
+Note that multiple masternodes use only one instance of the `apeirond` and `apeiron-cli` binary files located in `/usr/local/bin` and they each have their own configuration located in `/home/<username>/.apeiron` folder.
+
 &nbsp;
 
 
@@ -94,6 +96,15 @@ The following commands can then be run against the node that is running as the u
 ```
  apeiron-cli getinfo
 ```
+
+## Removing a masternode and user account
+If something goes wrong with your installation or you want to remove a masternode, you can do so with the following command.
+```
+ userdel -r <username>
+```
+This will remove the user and its home directory. If you then re-run the installation script you can re-use that username.
+
+&nbsp;
 
 ## Security
 The script will set up the required firewall rules to only allow inbound node communications, whilst blocking all other inbound ports and all outbound ports.
