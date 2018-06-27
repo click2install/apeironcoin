@@ -4,7 +4,7 @@ TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE="apeiron.conf"
 DEFAULTUSER="apeiron-mn1"
 DEFAULTPORT=46123
-DEFAULTSSHPORT=22
+SSH_PORTNUMBER=22
 BINARY_NAME="apeirond"
 BINARY_FILE="/usr/local/bin/$BINARY_NAME"
 CLI_NAME="apeiron-cli"
@@ -216,14 +216,6 @@ function check_port()
   done
 }
 
-function ask_ssh_port()
-{
-  read -e -p "$(echo -e $YELLOW Enter a port for SSH connections to your VPS: $NC)" -i $DEFAULTSSHPORT SSH_PORTNUMBER
-
-  sed -i "s/[#]\{0,1\}[ ]\{0,1\}Port [0-9]\{2,\}/Port ${SSH_PORTNUMBER}/g" /etc/ssh/sshd_config
-  systemctl reload sshd
-}
-
 function ask_ip() 
 {
   declare -a NODE_IPS
@@ -352,12 +344,6 @@ function show_output()
  echo -e "  running the ${GREEN}getinfo${NC} command."
  echo -e "  NOTE: the ${BINARY_NAME} daemon must be running first before trying this command. See notes above on service commands usage."
  echo
- echo -e "You can run ${GREEN}htop${NC} if you want to verify the Apeiron service is running or to monitor your server."
- if [[ $SSH_PORTNUMBER -ne $DEFAULTSSHPORT ]]; then
- echo
- echo -e " ATTENTION: you have changed your SSH port, make sure you modify your SSH client to use port $SSH_PORTNUMBER so you can login."
- fi
- echo 
  echo -e "================================================================================================================================"
  echo
 }
@@ -396,7 +382,6 @@ echo -e " - Prepare your system with the required dependencies"
 echo -e " - Obtain the latest Apeiron masternode files from the Apeiron GitHub repository"
 echo -e " - Create a user and password to run the Apeiron masternode service"
 echo -e " - Install the Apeiron masternode service under the new user [not root]"
-echo -e " - Update your system with a non-standard SSH port (optional)"
 echo -e " - Add DDoS protection using fail2ban"
 echo -e " - Update the system firewall to only allow; SSH, the masternode ports and outgoing connections"
 echo -e " - Rotate and archive the masternode logs to save disk space"
